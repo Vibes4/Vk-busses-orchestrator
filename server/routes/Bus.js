@@ -21,10 +21,15 @@ router.get('/list/:bus_id',async (req,res)=>{
     const id = req.params.bus_id;
     const bus = await BusListModel.find({"bus_id":id})
     console.log(bus);
-    res.status(200).send(bus);
+    res.status(200).json(bus);
 })
 
 
-// router.put('/list/:bus_id/update')
+router.delete('/list/delete/:bus_id',async (req,res)=>{
+    const id = req.params.bus_id;
+    const bus = await BusListModel.findOneAndDelete({"bus_id":id});
+    console.log(bus);
+    res.status(200).json(bus);
+})
 
 module.exports = router;
